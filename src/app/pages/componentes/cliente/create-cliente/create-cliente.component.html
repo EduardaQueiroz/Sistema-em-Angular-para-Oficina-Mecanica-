@@ -1,0 +1,103 @@
+<div class=" container m-4">
+    <form>
+        <div class="row">
+            <h4 class="m-1 font-weight-bold text-dark col-10"> Cadastrar Cliente </h4>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col">
+                <input requerid type="text" class="form-control" placeholder="Nome" [(ngModel)]="cliente.nome"
+                    name="nome">
+            </div>
+            <div class="form-group col">
+                <input requerid type="number" class="form-control" id="inputEmail4" placeholder="CPF"
+                    [(ngModel)]="cliente.cpfcnpj" name="cpfcnpj">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col">
+                <input requerid type="number" class="form-control" id="inputPassword4" placeholder="RG"
+                    [(ngModel)]="cliente.rg" name="rg">
+            </div>
+            <div class="form-group col">
+                <input requerid type="number" class="form-control" id="inputPassword4" placeholder="Telefone"
+                    [(ngModel)]="cliente.telefone" name="telefone">
+            </div>
+            <div class="form-group col">
+                <input requerid type="number" class="form-control" id="inputPassword4" placeholder="Celular"
+                    [(ngModel)]="cliente.celular" name="celular">
+            </div>
+
+            <div class="form-group col">
+                <input requerid type="text" class="form-control" id="inputPassword4" placeholder="Tipo de Cliente"
+                    [(ngModel)]="cliente.tipocliente" name="tipocliente">
+            </div>
+        </div>
+        <div class="row">
+            <label for="inputAddress">Endereço:</label>
+            <div class="form-group col-6">
+                <input requerid type="text" class="form-control" id="inputAddress" placeholder="Rua"
+                    [(ngModel)]="endereco.rua" name="rua">
+            </div>
+            <div class="form-group col-2">
+                <input requerid type="number" class="form-control" id="inputPassword4" placeholder="Nº"
+                    [(ngModel)]="endereco.numero" name="numero">
+            </div>
+            <div class="form-group col">
+                <input requerid type="text" class="form-control" id="inputAddress" placeholder="Bairro "
+                    [(ngModel)]="endereco.bairro" name="bairro">
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="form-group col-6">
+                <input requerid type="text" class="form-control" id="inputPassword4" placeholder="Cidade"
+                    [(ngModel)]="endereco.cidade" name="cidade">
+            </div>
+
+
+            <div class="form-group col-md-4">
+                <select id="inputEstado" class="custom-select" [(ngModel)]="endereco.estado" (change)="onChange($event)"
+                    name="estado">
+                    <option selected> Estado </option>
+                    <option> AC </option>
+                    <option> AL </option>
+                    <option> AP </option>
+                    <option> AM </option>
+                    <option> BA </option>
+                    <option> CE </option>
+                    <option> DF </option>
+                    <option> ES </option>
+                    <option> GO </option>
+                    <option> MA </option>
+                    <option> MT </option>
+                    <option> MS </option>
+                    <option> MG </option>
+                    <option> PA </option>
+                    <option> PB </option>
+                    <option> PR </option>
+                    <option> PE </option>
+                    <option> PI </option>
+                    <option> RJ </option>
+                    <option> RN </option>
+                    <option> RS </option>
+                    <option> RO </option>
+                    <option> RR </option>
+                    <option> SC </option>
+                    <option> SP </option>
+                    <option> SE </option>
+                    <option> TO </option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-2">
+                <input type="number" requerid class="form-control" id="inputCEP" placeholder="CEP"
+                    [(ngModel)]="endereco.cep" name="cep">
+            </div>
+        </div>
+
+    </form>
+    <br>
+    <button type="submit" class="btn btn-dark" (click)="salvarCliente()"> Cadastrar </button>
+</div>

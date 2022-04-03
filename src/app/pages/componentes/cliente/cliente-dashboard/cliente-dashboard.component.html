@@ -1,0 +1,67 @@
+<div class="container-fluid">
+
+    <div class="row row-cols-3 mb-4">
+        <div class="col-auto">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Clientes Devedores </div>
+                            <br>
+                            <div class="h6 mb-0 font-weight text-gray-800">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-left">Nome</th>
+                                            <th scope="col" class="text-center"> Valor da Dívida</th>
+                                            <th scope="col" class="text-center"
+                                                *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'">
+                                                Oficina de Origem da Dívida</th>
+                                            <th scope="col" class="text-center"
+                                                *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'">
+                                                Dívida Total do Cliente
+                                            </th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-borderless">
+                                        <!-- {{listaClientesDevedores}} -->
+                                        <tr *ngFor="let devedores of listaClientesDevedores">
+                                            <td> {{devedores.nome}} </td>
+
+                                            <td class="text-center">
+                                                <li *ngFor="let divida of devedores.oficinas"
+                                                    style="list-style-type: none;">
+                                                    R${{divida.total}}
+                                                </li>
+                                            </td>
+
+                                            <td *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'">
+                                                <li *ngFor="let divida of devedores.oficinas"
+                                                    style="list-style-type: none;">
+                                                    {{divida.descricao}}
+                                                </li>
+                                            </td>
+
+                                            <td scope="col" class="text-center"
+                                                *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'">
+                                                {{devedores.total}}</td>
+                                        </tr>
+
+                                    </tbody>
+                                    <br>
+                                    <tr>
+                                        <th scope="col" class="text-center">Dívida Total dos Clientes: R$
+                                            {{valorTotalDivida}}</th>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

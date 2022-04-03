@@ -1,0 +1,43 @@
+<div class="container-fluid">
+
+    <div class="row row-cols-3 mb-4">
+        <div class="col">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col-auto mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Oficinas que mais deram lucro/prejuízo </div>
+                            <br>
+                            <div class="form-group col">
+                                <input type="month" class="form-control" (change)="onChange($event)">
+                            </div>
+
+
+                            <div class="h6 mb-0 font-weight text-gray-800">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">Mais deu lucro</th>
+                                            <th scope="col"> Mais deu prejuízo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-borderless">
+                                        <td *ngFor="let funcCliente of listaFuncionariosQueSaoClientes">
+                                            <tr> Nome: {{funcCliente.nome}} </tr>
+                                            <tr class="text-center"> Valor: {{funcCliente.cpfcnpj}} </tr>
+                                            <tr> Endereco: {{funcCliente.nome}} </tr>
+                                        </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

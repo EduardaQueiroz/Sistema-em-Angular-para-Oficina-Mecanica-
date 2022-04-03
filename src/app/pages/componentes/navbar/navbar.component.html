@@ -1,0 +1,49 @@
+<!-- <nav class="navbar navbar-expand navbar-light bg-white topbar static-top border-bottom">
+
+    <div class="container px-5">
+        <a class="navbar-brand fw-bold" href="#page-top">AUTO MECÂNICA LTDA</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="bi-list"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ms-auto me-4 my-3 my-lg-0">
+                <li class="nav-item"><a class="nav-link me-lg-3 active" href="#features"></a></li>
+                <li class="nav-item"><a class="nav-link me-lg-3" href="#download"></a></li>
+                <li class="nav-item"><a class="nav-link me-lg-3" href="#download"></a></li>
+            </ul>
+            <button class="btn btn-dark rounded-pill px-3 mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                <span class="d-flex align-items-center">
+                    <i class="bi-chat-text-fill me-2"></i>
+                    <span class="small"> Ordem de Serviço </span>
+                </span>
+            </button>
+        </div>
+    </div>
+
+</nav> -->
+
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+    <ul class="navbar-nav ml-auto">
+        <div class="topbar-divider d-none d-sm-block mr-4 d-flex align-items-center"></div>
+        <li class="nav-item dropdown no-arrow">
+            Olá, {{usuarioLogado.login}}
+            <!-- <button class="btn btn-dark rounded-pill px-3 mb-2 mb-lg-0 mr-4" data-bs-toggle="modal" data-bs-target="#feedbackModal">
+                <span class="d-flex align-items-center">
+                    <i class="bi-chat-text-fill me-2"></i>
+                    <span class="small"> Ordem de Serviço </span>
+                </span>
+            </button> -->
+            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                aria-labelledby="userDropdown">
+                <div class="dropdown-divider"></div>
+                <!-- data-toggle="modal" data-target="#logoutModal" -->
+                <a class="dropdown-item" href="login.html">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400  color-red"></i>
+                    SAIR
+                </a>
+            </div>
+        </li>
+
+    </ul>
+</nav>

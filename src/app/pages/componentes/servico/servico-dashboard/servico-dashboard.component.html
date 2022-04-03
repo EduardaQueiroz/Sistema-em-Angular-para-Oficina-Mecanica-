@@ -1,0 +1,113 @@
+<div class="container-fluid">
+
+    <div class="row row-cols-2 mb-4">
+        <div class="col">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Itens de Serviços de cada Serviço </div>
+                            <br>
+                            <div class="row h6 mb-0 font-weight text-gray-800">
+                                <label for="inputEstado">Selecione um serviço:</label>
+                                <div class="form-group col">
+                                    <select id="inputEstado" class="form-control" [(ngModel)]="selectServico"
+                                        (change)="onChange($event)" name="selectServico">
+                                        <option selected>Escolher...</option>
+                                        <option *ngFor="let servico of listaItensDeServico">{{servico.servico}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-center"> Itens de Serviço</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-borderless">
+                                        <tr *ngFor="let i of itens">
+                                            <td> {{i}} </td>
+                                        </tr>
+                                    </tbody>
+                                    <br>
+
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Top 3 marcas e modelos de veículos mais atendidos na oficina </div>
+                            <br>
+                            <div class="row h6 mb-0 font-weight text-gray-800">
+                                
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="text-left"> Modelo</th>
+                                            <th scope="col" class="text-center"> Marca</th>
+                                            <th scope="col" class="text-center"> Quantidade</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-borderless">
+                                        <tr *ngFor="let carros of listaModelosMarcasMaisAtendidos">
+                                            <td> {{carros.modelo}} </td>
+                                            <td class="text-center"> {{carros.marca}} </td>
+                                            <td class="text-center"> {{carros.qnt}} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-auto mt-4">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Ordens de Servico que demandaram mais tempo </div>
+                            <br>
+                            <div class="h6 mb-0 font-weight text-gray-800">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">Nº</th>
+                                            <th scope="col">Cliente</th>
+                                            <th scope="col">Tempo (hrs)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-borderless">
+                                        <tr *ngFor="let item of listaOrdemServicoDemorouMaisTempo">
+                                            <td class="text-center"> {{item.codordemservico}} </td>
+                                            <td class="text-center"> {{item.nome}} </td>
+                                            <td class="text-center"> {{item.tempo_horas}} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

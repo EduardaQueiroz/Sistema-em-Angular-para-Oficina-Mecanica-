@@ -1,0 +1,189 @@
+<div class="container-fluid mt-4">
+    <!-- Page Heading -->
+    <!-- <h1 class="h3 mb-2 text-gray-800">Atendimentos</h1> -->
+
+    <!-- DataTales Example -->
+    <div class="card shadow">
+        <div class="card-header py-4 ">
+            <div class="row justify-content-center">
+                <h4 class="m-1 font-weight-bold text-dark col-8"> Funcionários </h4>
+
+                <div class="col-md-auto">
+                    <button class="btn btn-dark shadow" data-bs-target="#verAtendimentoCompletoModal"
+                        (click)="openInformacoesClienteComponent()">Informações <i class="fas fa-info-circle"></i>
+                    </button>
+                </div>
+                <div class="align-items-center justify-content-center col-sm-12 col-md-auto  aling-right">
+                    <button class="btn btn-dark shadow" data-bs-target="#verAtendimentoCompletoModal"> Cadastrar <i
+                            class="fas fa-user-plus"></i> </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body" style="height: 510px; overflow-y: auto;">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                                role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead class="text-center">
+                                    <tr role="row">
+
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable"
+                                            rowspan="1" colspan="1"
+                                            aria-label="Cliente: activate to sort column descending"
+                                            aria-sort="ascending" style="width: 500px;"> Nome </th>
+
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Position: activate to sort column ascending"
+                                            style="width: 150px;"> CPF</th>
+
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Office: activate to sort column ascending"
+                                            style="width: 200px;">Data de Admissão</th>
+
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 150px;">Salário</th>
+
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Start date: activate to sort column ascending"
+                                            style="width: 30px;">Especialidade</th>
+
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 300px;"
+                                            *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'">
+                                            Oficina</th>
+
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Start date: activate to sort column ascending"
+                                            style="width: 30px;"> Info </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="odd text-truncate" *ngFor="let funcionario of listaFuncionarios">
+                                        <td class="sorting_1">{{funcionario.nome}}</td>
+                                        <td class="">{{funcionario.cpfcnpj}}</td>
+                                        <td>{{funcionario.dataadmissao}}</td>
+                                        <td>{{funcionario.salario}}</td>
+                                        <td>{{funcionario.especialidade}}</td>
+                                        <td *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'"> {{funcionario.oficina_nome}}</td>
+                                        <td>
+                                            <button class="btn btn-link" data-bs-toggle="modal"
+                                                data-bs-target="#verDadosFuncionarioModal" data-bs-whatever="@mdo"
+                                                (click)="getInfoFuncionario(funcionario)">
+                                                <i class="far fa-file"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- modal de exibir dados completos do funcionario -->
+<div class="modal fade" id="verDadosFuncionarioModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">{{infoFuncionario.nome}}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form>
+                    <div class="row container border border-grey ml-1 mr-1">
+                        <div class=" col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Nome:</label>
+                                <div class="col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticNome"
+                                        value="{{infoFuncionario.nome}}">
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">CPF:</label>
+                                <div class=" col-sm-12 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticCPF"
+                                        value="{{infoFuncionario.cpfcnpj}}">
+                                </div>
+                            </div>
+                            <div class="row ">
+                                <label for="staticEmail" class="col-sm-auto col-form-label font-weight-bold">RG:</label>
+                                <div class=" col-sm-12 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticCPF"
+                                        value="{{infoFuncionario.rg}}">
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Telefone:</label>
+                                <div class=" col-sm-12 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticCPF"
+                                        value="{{infoFuncionario.telefone}}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="staticEmail" class="col-sm-auto col-form-label font-weight-bold">Data de
+                                    Admissão:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticPlaca"
+                                        value="{{infoFuncionario.dataadmissao}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Salário:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticMarca"
+                                        value="{{infoFuncionario.salario}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Especialidade:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticModelo"
+                                        value="{{infoFuncionario.especialidade}}">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md">
+                            <div class="row">
+                                <img src="{{infoFuncionario.foto}}">
+                            </div>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
+
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                    (click)="deleteFuncionario(infoFuncionario)">Excluir Funcionario</button>
+                <button type="button" class="btn btn-warning">Atualizar Funcionario</button>
+            </div>
+        </div>
+    </div>
+</div>

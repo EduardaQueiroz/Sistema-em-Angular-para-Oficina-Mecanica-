@@ -1,0 +1,282 @@
+<div class="container-fluid mt-4">
+    <!-- Page Heading -->
+    <!-- <h1 class="h3 mb-2 text-gray-800">Atendimentos</h1> -->
+
+    <!-- DataTales Example -->
+    <div class="card shadow">
+        <div class="card-header py-4">
+            <div class="row justify-content-center">
+                <h4 class="m-0 font-weight-bold text-dark col-10"> Atendimentos em Aberto</h4>
+                <div class="align-items-center col ">
+                    <button class="btn btn-dark shadow" data-bs-target="#verLocalizarClienteModal"
+                        (click)="localizarCliente()"> Localizar Cliente <i
+                            class="fas fa-info-circle"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+        <div class="card-body" style="height: 510px; overflow-y: auto;">
+            <div class="table-responsive">
+                <div id="dataTable_wrapper" class="dataTables_wrapper dt-bootstrap4">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-bordered dataTable" id="dataTable" width="100%" cellspacing="0"
+                                role="grid" aria-describedby="dataTable_info" style="width: 100%;">
+                                <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Salary: activate to sort column ascending"
+                                            style="width: 40px;">Nº</th>
+                                        <th class="sorting sorting_asc" tabindex="0" aria-controls="dataTable"
+                                            rowspan="1" colspan="1"
+                                            aria-label="Cliente: activate to sort column descending"
+                                            aria-sort="ascending" style="width: 300px;"> Cliente </th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Position: activate to sort column ascending"
+                                            style="width: 150px;"> Placa</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Office: activate to sort column ascending"
+                                            style="width: 150px;">Valor Total</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 300px;">Responsável</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Age: activate to sort column ascending"
+                                            style="width: 300px;"
+                                            *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'">
+                                            Oficina</th>
+                                        <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                            colspan="1" aria-label="Start date: activate to sort column ascending"
+                                            style="width: 40px;"></th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr class="odd text-truncate" *ngFor="let atendimento of listaAtendimentosAbertos">
+                                        <td class="sorting_1">{{atendimento.codordemservico}}</td>
+                                        <td class="">{{atendimento.get_cliente_info.nome}}</td>
+                                        <td>{{atendimento.placa}}</td>
+                                        <td>{{atendimento.total}}</td>
+                                        <td>{{atendimento.get_funcionario_info.nome}}</td>
+                                        <td *ngIf="usuarioLogado.get_funcionario.cargo_funcionario == 'PRESIDENTE'">
+                                            {{usuarioLogado.get_funcionario.descricao_oficina}}</td>
+                                        <td>
+                                            <button class="btn btn-link" data-bs-toggle="modal"
+                                                data-bs-target="#verAtendimentoCompletoModal" data-bs-whatever="@mdo"
+                                                (click)="getServicosOrdemServico(atendimento)">
+
+                                                <i class="fas fa-clipboard-check"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- modal de exibir atendimento completo -->
+<div class="modal fade" id="verAtendimentoCompletoModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-xl ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ordem de Serviço - {{atendimentoAtual.codordemservico}}
+                </h5>
+                <button type="button" class="btn-close" id="closeModal" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form>
+                    <div class="row container border border-grey ml-1 mr-1">
+                        <div class=" col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Nome:</label>
+                                <div class="col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticNome"
+                                        value="{{atendimentoAtual.get_cliente_info.nome}}">
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">CPF:</label>
+                                <div class=" col-sm-12 col-md">
+                                    <input type="text" class="form-control-plaintext cpf-mask" id="staticCPF"
+                                        value="{{atendimentoAtual.get_cliente_info.cpf}}">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Endereço:</label>
+                                <div class="col-sm-12 col-md">
+                                    <input type="text" class="form-control-plaintext " id="staticEndRua"
+                                        value="{{enderecoCliente.rua}}">
+                                    <input type="text" class="form-control-plaintext " id="staticEndNumero"
+                                        value="{{enderecoCliente.numero}}">
+                                    <input type="text" class="form-control-plaintext " id="staticEndBairro"
+                                        value="{{enderecoCliente.bairro}}">
+                                    <input type="text" class="form-control-plaintext " id="staticEndCidade"
+                                        value="{{enderecoCliente.cidade}}">
+                                    <input type="text" class="form-control-plaintext " id="staticEndEstado"
+                                        value="{{enderecoCliente.estado}}">
+                                    <input type="text" class="form-control-plaintext " id="staticEndCep"
+                                        value="{{enderecoCliente.cep}}">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Placa:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticPlaca"
+                                        value="{{atendimentoAtual.placa}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Marca:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticMarca"
+                                        value="{{atendimentoAtual.get_veiculo_info.marca}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Modelo:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticModelo"
+                                        value="{{atendimentoAtual.get_veiculo_info.modelo}}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row container border border-grey m-1">
+                        <div class="col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Entrada:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="date" class="form-control-plaintext date-mask" id="staticModelo"
+                                        value="{{atendimentoAtual.entrada}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Saída:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="date" class="form-control-plaintext" id="staticModelo" value=""
+                                        [(ngModel)]="atendimentoAtual.saida" name="saida">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Responsável:</label>
+                                <div class="col-sm-10 col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticModelo"
+                                        value="{{atendimentoAtual.get_funcionario_info.nome}}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row container border border-grey ml-1 mr-1">
+                        <div class="col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Serviços:</label>
+                                <div class="row ml-2" *ngFor="let servico of listaServicos">
+                                    <input type="text" class="form-control-plaintext row" id="staticModelo"
+                                        value="{{servico.descricao}} - Preço: R${{servico.preco}}">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Fechar </button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="finalizarAtendimento(atendimentoAtual)">Finalizar Atendimento</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- modal de exibir localização do cliente -->
+<!-- <div class="modal fade" id="verLocalizarClienteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg ">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Oficina mais próxima</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body ">
+                <form>
+                    <div class="row container border border-grey ml-1 mr-1">
+                        <div class=" col-sm-12 col-md">
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">Selecione o cliente:</label>
+                                <div class="col-md">
+                                    <select id="inputEstado" class="form-control" [(ngModel)]="selectCliente"
+                                        (change)="onChange($event)" name="selectServico">
+                                        <option selected>Escolher...</option>
+                                        <option *ngFor="let servico of listaItensDeServico">{{servico.servico}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">CPF/CNPJ:</label>
+                                <div class="col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticNome"
+                                        value="{{infoCliente.cpfcnpj}}">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <label for="staticEmail"
+                                    class="col-sm-auto col-form-label font-weight-bold">RG:</label>
+                                <div class="col-md">
+                                    <input type="text" class="form-control-plaintext" id="staticNome"
+                                        value="{{infoCliente.rg}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                    </div>
+
+                    
+
+                </form>
+            </div>
+            
+        </div>
+    </div>
+</div> -->

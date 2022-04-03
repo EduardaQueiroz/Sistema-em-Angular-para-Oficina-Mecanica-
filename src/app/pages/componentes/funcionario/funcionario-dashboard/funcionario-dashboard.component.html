@@ -1,0 +1,132 @@
+<div class="container-fluid">
+
+    <div class="row row-cols-3 mb-4">
+        <div class="col">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Funcionários que também são clientes </div>
+                            <br>
+                            <div class="h6 mb-0 font-weight text-gray-800">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">Nome</th>
+                                            <th scope="col"> CPF</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-borderless">
+                                        <tr *ngFor="let funcCliente of listaFuncionariosQueSaoClientes">
+                                            <td> {{funcCliente.nome}} </td>
+                                            <td class="text-center"> {{funcCliente.cpfcnpj}} </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-1">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Funcionários que ganham mais que a média </div>
+                            <br>
+                            
+                            <div class="h6 mb-0 font-weight text-gray-800">
+                                <table class="table">
+                                    <thead>
+                                        <tr class="text-center">
+                                            <th scope="col">Funcionários</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-borderless">
+                                        <tr
+                                            *ngFor="let func of listaFuncionariosQueGanhamMaisQueMediaSalarial">
+                                            <td class="text-center"> {{func.nome}} </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                Funcionários que ganham o mesmo salário </div>
+                            <br>
+                            <label class="text-center" *ngFor="let salario of listaFuncionariosQueRecebemMesmoSalario">
+                                Salário: R$ {{salario.salario}}
+                                <div class="h6 mb-0 font-weight text-gray-800">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="text-left">
+                                                <th scope="col">Funcionários</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-borderless">
+                                            <tr>
+                                                <td class="text-center"> {{salario.funcionarios}} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col mt-4">
+            <div class="card border-left-dark shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-center font-weight-bold text-dark text-uppercase mb-1">
+                                mecânico que participou de todos os consertos executados pela oficina </div>
+                            <br>
+                            <label class="text-center">
+                                {{mensagem}} 
+                                <div class="h6 mb-0 font-weight text-gray-800">
+                                    <table class="table">
+                                        <thead>
+                                            <tr class="text-left">
+                                                <th scope="col">{{titulo}}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-borderless">
+                                            <tr>
+                                                <td class="text-center"> {{funcionarios}} </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>

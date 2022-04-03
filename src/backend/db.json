@@ -1,0 +1,17 @@
+{
+    "ordemDeServico": [
+        {
+            "id": 1,
+            "entrada": "25/11/2021",
+            "saida": "26/11/2021",
+            "codCliente": 1,
+            "codFuncionario": 1,
+            "codServico": [1],
+            "placa": "SDX1524",
+            "situacaoPendente": true,
+            "total": 200,
+            "totalServico": 200,
+            "desconto": 50
+        }
+    ]
+}
