@@ -1,6 +1,9 @@
-# ProjectPBDFront
+# Project PBD Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.12.
+Sistema em Angular para Oficina Mecânica
+Esse sistema foi desenvolvido na disciplina de Projeto de Banco de Dados (PBD) do meu curso de graduação. O projeto foi desenvolvido em dupla e o frontend foi feito por mim, utilizando o framework Angular, pois me identifico com esse ramo de desenvolvimento.
+
+Ps. A aplicação não dispõe de todas as funcionalidades implementadas, pois devido a carga horária da disciplina ter sido reduzida, o professor solicitou funcionalidades específcas para serem desenvolvidas no tempo hábil que tínhamos.
 
 ## Development server
 
